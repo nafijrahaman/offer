@@ -4,284 +4,370 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Exclusive Offers</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Clash+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
 :root{
-  --bg:#07070d;--card:#111120;--border:#1e1e30;
-  --gold:#f5c842;--gold2:#ffaa33;--orange:#ff5c38;
-  --text:#ededf8;--muted:#55557a;--dim:#7777a0;
+  --bg:#050508;
+  --s1:#0c0c14;
+  --s2:#10101c;
+  --bdr:#1c1c2e;
+  --bdr2:#252538;
+  --a:#c8f135;
+  --a2:#9ef000;
+  --blue:#4f8eff;
+  --pink:#ff4fa3;
+  --text:#f0f0fa;
+  --sub:#6060a0;
+  --hint:#404068;
 }
+
+html{scroll-behavior:smooth}
+
 body{
-  background:var(--bg);color:var(--text);
-  font-family:'Outfit',sans-serif;
-  min-height:100vh;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:48px 20px;
-  -webkit-user-select:none;user-select:none;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:60px 20px;
+  -webkit-user-select:none;
+  user-select:none;
   overflow-x:hidden;
 }
-/* Grid bg */
-body::before{
-  content:'';position:fixed;inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
-  background-size:52px 52px;
-  pointer-events:none;
+
+/* ── Background ── */
+.bg-wrap{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.bg-dot{
+  position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:28px 28px;
 }
-/* Glow orbs */
-body::after{
-  content:'';position:fixed;
-  top:-200px;right:-200px;
+.bg-g1{
+  position:absolute;top:-300px;right:-200px;
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,241,53,.07) 0%,transparent 60%);
+}
+.bg-g2{
+  position:absolute;bottom:-250px;left:-150px;
   width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(circle,rgba(245,200,66,.08) 0%,transparent 65%);
-  pointer-events:none;
+  background:radial-gradient(circle,rgba(79,142,255,.06) 0%,transparent 60%);
 }
-.orb2{
-  position:fixed;bottom:-150px;left:-150px;
+.bg-g3{
+  position:absolute;top:40%;left:40%;
   width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,92,56,.06) 0%,transparent 65%);
-  pointer-events:none;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(255,79,163,.04) 0%,transparent 60%);
 }
-.wrap{position:relative;z-index:1;width:100%;max-width:560px}
-
-/* HEADER */
-.header{text-align:center;margin-bottom:44px}
-.pill{
-  display:inline-flex;align-items:center;gap:7px;
-  background:rgba(245,200,66,.08);border:1px solid rgba(245,200,66,.22);
-  color:var(--gold);font-size:10px;font-weight:600;
-  letter-spacing:3px;text-transform:uppercase;
-  padding:6px 16px;border-radius:100px;margin-bottom:22px;
-}
-.dot{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--gold);
-  animation:blink 2s ease-in-out infinite;
-}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-h1{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(50px,12vw,84px);
-  font-weight:800;line-height:.9;
-  letter-spacing:-1.5px;margin-bottom:14px;
-}
-.w1{display:block;color:#fff}
-.w2{
-  display:block;
-  background:linear-gradient(110deg,var(--gold),var(--gold2) 50%,var(--orange));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.sub{font-size:13.5px;color:var(--muted);font-weight:300;line-height:1.6}
-
-/* COUNTDOWN */
-.countdown{
-  display:flex;gap:8px;justify-content:center;
-  margin-bottom:36px;
-}
-.cd-box{
-  flex:1;max-width:90px;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;padding:14px 8px;
-  text-align:center;
-}
-.cd-num{
-  font-family:'Syne',sans-serif;font-size:28px;font-weight:700;
-  background:linear-gradient(135deg,var(--gold),var(--orange));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  line-height:1;
-}
-.cd-lbl{font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:5px}
-.cd-sep{
-  align-self:center;padding-bottom:8px;
-  font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:var(--border);
+.bg-line{
+  position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(200,241,53,.15),transparent);
 }
 
-/* EXPIRED banner */
-.expired-banner{
-  display:none;
-  background:rgba(255,92,56,.1);border:1px solid rgba(255,92,56,.3);
-  border-radius:12px;padding:14px 20px;
-  text-align:center;color:var(--orange);
-  font-size:14px;font-weight:500;
+/* ── Wrap ── */
+.wrap{position:relative;z-index:1;width:100%;max-width:600px}
+
+/* ── Top tag ── */
+.toptag{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:32px;
+}
+.toptag-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--bdr2))}
+.toptag-text{
+  font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;
+  color:var(--sub);white-space:nowrap;
+}
+
+/* ── Heading ── */
+.heading{margin-bottom:40px}
+.heading h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(56px,13vw,96px);
+  font-weight:300;
+  line-height:.88;
+  letter-spacing:-2px;
   margin-bottom:18px;
 }
+.heading h1 em{
+  font-style:italic;
+  background:linear-gradient(120deg,var(--a) 0%,var(--a2) 40%,var(--blue) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.heading p{
+  font-size:14px;color:var(--sub);font-weight:300;
+  line-height:1.7;max-width:400px;
+}
 
-/* OFFERS */
-.offers{display:flex;flex-direction:column;gap:9px}
+/* ── Countdown ── */
+.cd-wrap{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:8px;margin-bottom:32px;
+}
+.cd-cell{
+  background:var(--s1);
+  border:1px solid var(--bdr);
+  border-radius:16px;
+  padding:16px 12px 12px;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.cd-cell::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--a),var(--blue));
+  opacity:.5;
+}
+.cd-n{
+  font-family:'DM Sans',sans-serif;
+  font-size:36px;font-weight:600;
+  line-height:1;
+  background:linear-gradient(160deg,#fff 40%,var(--a));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;
+}
+.cd-l{font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--hint);margin-top:6px;display:block}
+
+/* expiry note */
+.expiry-row{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin-bottom:24px;
+  font-size:11.5px;color:var(--sub);
+}
+.expiry-icon{
+  width:14px;height:14px;border-radius:50%;
+  border:1px solid var(--hint);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.expiry-icon::after{
+  content:'!';font-size:8px;color:var(--hint);font-weight:700;
+}
+
+/* ── Expired banner ── */
+.exp-bar{
+  display:none;
+  background:rgba(255,79,79,.08);
+  border:1px solid rgba(255,79,79,.25);
+  border-radius:12px;padding:13px 18px;
+  text-align:center;font-size:13px;
+  color:#ff6060;margin-bottom:18px;
+}
+
+/* ── Offers ── */
+.offers{display:flex;flex-direction:column;gap:8px}
+
 .offer{
-  display:flex;align-items:center;
-  background:var(--card);border:1px solid var(--border);
-  border-radius:16px;padding:17px 20px;
+  display:grid;
+  grid-template-columns:52px 1fr auto auto;
+  align-items:center;gap:0;
+  background:var(--s1);
+  border:1px solid var(--bdr);
+  border-radius:18px;
+  padding:16px 18px 16px 16px;
   text-decoration:none;color:var(--text);
   cursor:pointer;
   position:relative;overflow:hidden;
-  transition:background .2s,border-color .2s,transform .1s;
-  animation:up .45s ease both;
+  transition:border-color .2s,background .2s,transform .12s;
+  animation:rise .5s cubic-bezier(.22,1,.36,1) both;
   -webkit-tap-highlight-color:transparent;outline:none;
 }
-.offer:nth-child(1){animation-delay:.05s}
-.offer:nth-child(2){animation-delay:.10s}
-.offer:nth-child(3){animation-delay:.15s}
-.offer:nth-child(4){animation-delay:.20s}
-.offer:nth-child(5){animation-delay:.25s}
-@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.offer:hover{background:#161628;border-color:#2e2e48}
-.offer:active{transform:scale(.985);background:#1a1a2e;border-color:rgba(245,200,66,.3)}
-/* Shine on hover */
-.offer::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent 0%,rgba(245,200,66,.3) 50%,transparent 100%);
-  opacity:0;transition:opacity .25s;
+.offer:nth-child(1){animation-delay:.04s}
+.offer:nth-child(2){animation-delay:.09s}
+.offer:nth-child(3){animation-delay:.14s}
+.offer:nth-child(4){animation-delay:.19s}
+.offer:nth-child(5){animation-delay:.24s}
+@keyframes rise{
+  from{opacity:0;transform:translateY(24px) scale(.98)}
+  to{opacity:1;transform:translateY(0) scale(1)}
 }
-.offer:hover::before{opacity:1}
 
-/* left accent bar */
-.offer-bar{
-  position:absolute;left:0;top:50%;transform:translateY(-50%);
-  width:3px;height:0;border-radius:0 3px 3px 0;
-  background:linear-gradient(180deg,var(--gold),var(--orange));
-  transition:height .25s;
+/* Hover glow sweep */
+.offer::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(105deg,rgba(200,241,53,.04) 0%,transparent 50%);
+  opacity:0;transition:opacity .25s;border-radius:18px;pointer-events:none;
 }
-.offer:hover .offer-bar{height:55%}
+.offer:hover{
+  background:var(--s2);
+  border-color:var(--bdr2);
+  transform:translateY(-1px);
+}
+.offer:hover::after{opacity:1}
+.offer:active{transform:scale(.985) translateY(0)}
 
-.num-box{
-  width:44px;height:44px;border-radius:11px;
-  background:rgba(245,200,66,.07);
-  border:1px solid rgba(245,200,66,.13);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.num{
-  font-family:'Syne',sans-serif;font-size:16px;font-weight:700;
-  background:linear-gradient(135deg,var(--gold),var(--orange));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.info{flex:1;margin-left:14px}
-.ttl{font-size:15px;font-weight:500}
-.dsc{font-size:11.5px;color:var(--muted);margin-top:3px;font-weight:300}
-.badge{
-  font-size:9.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--gold);background:rgba(245,200,66,.09);
-  border:1px solid rgba(245,200,66,.18);
-  padding:3px 9px;border-radius:5px;
-  margin-right:12px;flex-shrink:0;
-}
-.arr{
-  width:34px;height:34px;border-radius:50%;
-  border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  transition:border-color .2s,background .2s;
-}
-.offer:hover .arr{border-color:rgba(245,200,66,.3);background:rgba(245,200,66,.06)}
-.arr svg{width:13px;height:13px;stroke:var(--dim);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
-.offer:hover .arr svg{stroke:var(--gold)}
-
-/* FOOTER */
-.foot{
+/* Number */
+.o-num{
+  width:40px;height:40px;
+  border-radius:12px;
+  background:linear-gradient(135deg,rgba(200,241,53,.1),rgba(79,142,255,.08));
+  border:1px solid rgba(200,241,53,.12);
   display:flex;align-items:center;justify-content:center;
-  gap:10px;margin-top:30px;
-  font-size:11.5px;color:var(--muted);letter-spacing:.3px;
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;
+  color:var(--a);flex-shrink:0;
 }
-.fdot{width:3px;height:3px;background:var(--border);border-radius:50%}
+
+/* Info */
+.o-info{padding:0 14px}
+.o-title{font-size:14.5px;font-weight:500;line-height:1.3;letter-spacing:.1px}
+.o-sub{font-size:11.5px;color:var(--sub);margin-top:3px;font-weight:300}
+
+/* Tag */
+.o-tag{
+  font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;
+  padding:4px 9px;border-radius:6px;
+  margin-right:10px;flex-shrink:0;white-space:nowrap;
+}
+.tag-hot{color:#ff9040;background:rgba(255,144,64,.09);border:1px solid rgba(255,144,64,.2)}
+.tag-new{color:var(--blue);background:rgba(79,142,255,.09);border:1px solid rgba(79,142,255,.2)}
+.tag-top{color:var(--pink);background:rgba(255,79,163,.09);border:1px solid rgba(255,79,163,.2)}
+.tag-vip{color:var(--a);background:rgba(200,241,53,.09);border:1px solid rgba(200,241,53,.2)}
+
+/* Arrow */
+.o-arr{
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid var(--bdr2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  transition:background .2s,border-color .2s,transform .2s;
+}
+.offer:hover .o-arr{
+  background:rgba(200,241,53,.1);
+  border-color:rgba(200,241,53,.3);
+  transform:rotate(-45deg);
+}
+.o-arr svg{width:12px;height:12px;stroke:var(--hint);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+.offer:hover .o-arr svg{stroke:var(--a)}
+
+/* ── Footer ── */
+.footer{
+  margin-top:36px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;
+  background:var(--s1);border:1px solid var(--bdr);border-radius:14px;
+}
+.footer-l{font-size:11px;color:var(--hint);line-height:1.6}
+.footer-l strong{color:var(--sub);font-weight:500}
+.footer-badges{display:flex;gap:6px}
+.fbadge{
+  font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 9px;border-radius:6px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--bdr2);color:var(--hint);
+}
 </style>
 </head>
 <body>
-<div class="orb2"></div>
+
+<div class="bg-wrap">
+  <div class="bg-dot"></div>
+  <div class="bg-g1"></div>
+  <div class="bg-g2"></div>
+  <div class="bg-g3"></div>
+  <div class="bg-line"></div>
+</div>
+
 <div class="wrap">
 
-  <div class="header">
-    <div class="pill"><span class="dot"></span>Limited Time</div>
-    <h1><span class="w1">Exclusive</span><span class="w2">Offers</span></h1>
-    <p class="sub">Grab your deal before the timer hits zero — valid till 11:59 PM today</p>
+  <div class="toptag">
+    <div class="toptag-line"></div>
+    <div class="toptag-text">Limited Time Deals</div>
+    <div class="toptag-line"></div>
   </div>
 
-  <!-- Countdown to 15 Mar 2026 11:59 AM -->
-  <div class="countdown">
-    <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-lbl">Hours</div></div>
-    <div class="cd-sep">:</div>
-    <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-lbl">Mins</div></div>
-    <div class="cd-sep">:</div>
-    <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-lbl">Secs</div></div>
+  <div class="heading">
+    <h1>Grab Your<br><em>Exclusive</em><br>Offer</h1>
+    <p>Five premium top-up deals available today only. Timer below shows exactly how long you have.</p>
   </div>
 
-  <div class="expired-banner" id="exp-banner">These offers have expired.</div>
+  <div class="cd-wrap">
+    <div class="cd-cell"><span class="cd-n" id="cdh">00</span><span class="cd-l">Hours</span></div>
+    <div class="cd-cell"><span class="cd-n" id="cdm">00</span><span class="cd-l">Minutes</span></div>
+    <div class="cd-cell"><span class="cd-n" id="cds">00</span><span class="cd-l">Seconds</span></div>
+  </div>
+
+  <div class="expiry-row">
+    <div class="expiry-icon"></div>
+    <span>Offers expire on <strong style="color:var(--sub);font-weight:500">15 March 2026 at 11:59 PM</strong></span>
+  </div>
+
+  <div class="exp-bar" id="expbar">⏰ These offers have expired. Check back for new deals.</div>
 
   <div class="offers" id="grid"></div>
 
-  <div class="foot">
-    <span>Valid till 15 Mar 2026 · 11:59 PM</span>
-    <span class="fdot"></span>
-    <span>Secure &amp; Free</span>
+  <div class="footer">
+    <div class="footer-l">
+      Valid until <strong>15 Mar 2026 · 11:59 PM</strong><br>
+      Tap any offer to claim instantly
+    </div>
+    <div class="footer-badges">
+      <div class="fbadge">Free</div>
+      <div class="fbadge">Secure</div>
+      <div class="fbadge">5 Offers</div>
+    </div>
   </div>
+
 </div>
 
 <script>
-/* ---- Disable right-click & inspect shortcuts ---- */
+/* ── Block inspect ── */
 document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('keydown',e=>{
   const k=e.key.toUpperCase();
-  if(
-    e.key==='F12'||
-    (e.ctrlKey&&e.shiftKey&&['I','J','C'].includes(k))||
-    (e.ctrlKey&&k==='U')||
-    (e.metaKey&&e.altKey&&['I','J','C'].includes(k))
-  ){e.preventDefault();return false;}
+  if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&'IJC'.includes(k))||(e.ctrlKey&&k==='U')||(e.metaKey&&e.altKey&&'IJC'.includes(k))){
+    e.preventDefault();return false;
+  }
 });
 
-/* ---- Countdown ---- */
-const deadline=new Date('2026-03-15T23:59:00');
+
+const DL=new Date('2026-03-15T23:59:00');
 function tick(){
-  const now=new Date();
-  const diff=deadline-now;
-  const hEl=document.getElementById('cd-h');
-  const mEl=document.getElementById('cd-m');
-  const sEl=document.getElementById('cd-s');
-  const banner=document.getElementById('exp-banner');
+  const diff=DL-Date.now();
   if(diff<=0){
-    hEl.textContent=mEl.textContent=sEl.textContent='00';
-    banner.style.display='block';
-    document.querySelectorAll('.offer').forEach(o=>{
-      o.style.opacity='.4';o.style.pointerEvents='none';
-    });
+    document.getElementById('cdh').textContent='00';
+    document.getElementById('cdm').textContent='00';
+    document.getElementById('cds').textContent='00';
+    document.getElementById('expbar').style.display='block';
+    document.querySelectorAll('.offer').forEach(o=>{o.style.opacity='.35';o.style.pointerEvents='none'});
     return;
   }
   const h=Math.floor(diff/3600000);
-  const m=Math.floor((diff%3600000)/60000);
-  const s=Math.floor((diff%60000)/1000);
-  hEl.textContent=String(h).padStart(2,'0');
-  mEl.textContent=String(m).padStart(2,'0');
-  sEl.textContent=String(s).padStart(2,'0');
+  const m=Math.floor(diff%3600000/60000);
+  const s=Math.floor(diff%60000/1000);
+  document.getElementById('cdh').textContent=String(h).padStart(2,'0');
+  document.getElementById('cdm').textContent=String(m).padStart(2,'0');
+  document.getElementById('cds').textContent=String(s).padStart(2,'0');
 }
-tick();
-setInterval(tick,1000);
+tick();setInterval(tick,1000);
 
-/* ---- Offers (base64 obfuscated) ---- */
+
 const D=[
-  ['T2ZmZXIgMQ==','RXhjbHVzaXZlIHRvcC11cCByZXdhcmQ=','aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjUvbnVsbA==','SE9U'],
-  ['T2ZmZXIgMg==','U3BlY2lhbCBib251cyBhd2FpdHMgeW91','aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjYvbnVsbA==','TkVX'],
-  ['T2ZmZXIgMw==','UHJlbWl1bSBkZWFsIGluc2lkZQ==','aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjcvbnVsbA==','VFJFQUQ='],
-  ['T2ZmZXIgNA==','VW5sb2NrIHlvdXIgYm9udXM=','aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjgvbnVsbA==','VEVBTQ=='],
-  ['T2ZmZXIgNQ==','TGltaXRlZCBzdG9jayAtIGdyYWIgaXQ=','aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNzAvbnVsbA==','VEVBTQ=='],
+  ['T2ZmZXIgMQ==','RXhjbHVzaXZlIFRvcC1VcCBEZWFs',    'aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjUvbnVsbA==','dGFnLWhvdA=='],
+  ['T2ZmZXIgMg==','U3BlY2lhbCBCb251cyBSZXdhcmQ=',    'aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjYvbnVsbA==','dGFnLW5ldw=='],
+  ['T2ZmZXIgMw==','UHJlbWl1bSBEZWFsIEluc2lkZQ==',    'aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjcvbnVsbA==','dGFnLXRvcA=='],
+  ['T2ZmZXIgNA==','VW5sb2NrIFlvdXIgQm9udXM=',         'aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjgvbnVsbA==','dGFnLXZpcA=='],
+  ['T2ZmZXIgNQ==','TGltaXRlZCBTdG9jayBPZmZlcg==',    'aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjkvbnVsbA==','dGFnLWhvdA=='],
 ];
 const b=s=>atob(s);
+const descs=['Redeem your exclusive top-up reward','Special bonus awaiting you today','Premium deal — limited availability','Unlock your personal bonus now','Grab it before stock runs out'];
 const grid=document.getElementById('grid');
 
-D.forEach(([t,desc,u,tag],i)=>{
+D.forEach(([t,_d,u,tg],i)=>{
   const a=document.createElement('a');
   a.className='offer';
   a.href='#';
   a.setAttribute('data-u',u);
   a.innerHTML=`
-    <div class="offer-bar"></div>
-    <div class="num-box"><span class="num">0${i+1}</span></div>
-    <div class="info">
-      <div class="ttl">${b(t)}</div>
-      <div class="dsc">${b(desc)}</div>
+    <div class="o-num">0${i+1}</div>
+    <div class="o-info">
+      <div class="o-title">${b(t)}</div>
+      <div class="o-sub">${descs[i]}</div>
     </div>
-    <div class="badge">${b(tag)}</div>
-    <div class="arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    <div class="o-tag ${b(tg)}">${b(tg).includes('hot')?'HOT':b(tg).includes('new')?'NEW':b(tg).includes('top')?'TOP':'VIP'}</div>
+    <div class="o-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
   `;
   a.addEventListener('click',function(e){
     e.preventDefault();
