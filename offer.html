@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exclusive Offers</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07070d;--card:#111120;--border:#1e1e30;
+  --gold:#f5c842;--gold2:#ffaa33;--orange:#ff5c38;
+  --text:#ededf8;--muted:#55557a;--dim:#7777a0;
+}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Outfit',sans-serif;
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:48px 20px;
+  -webkit-user-select:none;user-select:none;
+  overflow-x:hidden;
+}
+/* Grid bg */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:52px 52px;
+  pointer-events:none;
+}
+/* Glow orbs */
+body::after{
+  content:'';position:fixed;
+  top:-200px;right:-200px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(245,200,66,.08) 0%,transparent 65%);
+  pointer-events:none;
+}
+.orb2{
+  position:fixed;bottom:-150px;left:-150px;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,92,56,.06) 0%,transparent 65%);
+  pointer-events:none;
+}
+.wrap{position:relative;z-index:1;width:100%;max-width:560px}
+
+/* HEADER */
+.header{text-align:center;margin-bottom:44px}
+.pill{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(245,200,66,.08);border:1px solid rgba(245,200,66,.22);
+  color:var(--gold);font-size:10px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;
+  padding:6px 16px;border-radius:100px;margin-bottom:22px;
+}
+.dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--gold);
+  animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(50px,12vw,84px);
+  font-weight:800;line-height:.9;
+  letter-spacing:-1.5px;margin-bottom:14px;
+}
+.w1{display:block;color:#fff}
+.w2{
+  display:block;
+  background:linear-gradient(110deg,var(--gold),var(--gold2) 50%,var(--orange));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.sub{font-size:13.5px;color:var(--muted);font-weight:300;line-height:1.6}
+
+/* COUNTDOWN */
+.countdown{
+  display:flex;gap:8px;justify-content:center;
+  margin-bottom:36px;
+}
+.cd-box{
+  flex:1;max-width:90px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;padding:14px 8px;
+  text-align:center;
+}
+.cd-num{
+  font-family:'Syne',sans-serif;font-size:28px;font-weight:700;
+  background:linear-gradient(135deg,var(--gold),var(--orange));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;
+}
+.cd-lbl{font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:5px}
+.cd-sep{
+  align-self:center;padding-bottom:8px;
+  font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:var(--border);
+}
+
+/* EXPIRED banner */
+.expired-banner{
+  display:none;
+  background:rgba(255,92,56,.1);border:1px solid rgba(255,92,56,.3);
+  border-radius:12px;padding:14px 20px;
+  text-align:center;color:var(--orange);
+  font-size:14px;font-weight:500;
+  margin-bottom:18px;
+}
+
+/* OFFERS */
+.offers{display:flex;flex-direction:column;gap:9px}
+.offer{
+  display:flex;align-items:center;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:17px 20px;
+  text-decoration:none;color:var(--text);
+  cursor:pointer;
+  position:relative;overflow:hidden;
+  transition:background .2s,border-color .2s,transform .1s;
+  animation:up .45s ease both;
+  -webkit-tap-highlight-color:transparent;outline:none;
+}
+.offer:nth-child(1){animation-delay:.05s}
+.offer:nth-child(2){animation-delay:.10s}
+.offer:nth-child(3){animation-delay:.15s}
+.offer:nth-child(4){animation-delay:.20s}
+.offer:nth-child(5){animation-delay:.25s}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.offer:hover{background:#161628;border-color:#2e2e48}
+.offer:active{transform:scale(.985);background:#1a1a2e;border-color:rgba(245,200,66,.3)}
+/* Shine on hover */
+.offer::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent 0%,rgba(245,200,66,.3) 50%,transparent 100%);
+  opacity:0;transition:opacity .25s;
+}
+.offer:hover::before{opacity:1}
+
+/* left accent bar */
+.offer-bar{
+  position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:3px;height:0;border-radius:0 3px 3px 0;
+  background:linear-gradient(180deg,var(--gold),var(--orange));
+  transition:height .25s;
+}
+.offer:hover .offer-bar{height:55%}
+
+.num-box{
+  width:44px;height:44px;border-radius:11px;
+  background:rgba(245,200,66,.07);
+  border:1px solid rgba(245,200,66,.13);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.num{
+  font-family:'Syne',sans-serif;font-size:16px;font-weight:700;
+  background:linear-gradient(135deg,var(--gold),var(--orange));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.info{flex:1;margin-left:14px}
+.ttl{font-size:15px;font-weight:500}
+.dsc{font-size:11.5px;color:var(--muted);margin-top:3px;font-weight:300}
+.badge{
+  font-size:9.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--gold);background:rgba(245,200,66,.09);
+  border:1px solid rgba(245,200,66,.18);
+  padding:3px 9px;border-radius:5px;
+  margin-right:12px;flex-shrink:0;
+}
+.arr{
+  width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:border-color .2s,background .2s;
+}
+.offer:hover .arr{border-color:rgba(245,200,66,.3);background:rgba(245,200,66,.06)}
+.arr svg{width:13px;height:13px;stroke:var(--dim);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+.offer:hover .arr svg{stroke:var(--gold)}
+
+/* FOOTER */
+.foot{
+  display:flex;align-items:center;justify-content:center;
+  gap:10px;margin-top:30px;
+  font-size:11.5px;color:var(--muted);letter-spacing:.3px;
+}
+.fdot{width:3px;height:3px;background:var(--border);border-radius:50%}
+</style>
+</head>
+<body>
+<div class="orb2"></div>
+<div class="wrap">
+
+  <div class="header">
+    <div class="pill"><span class="dot"></span>Limited Time</div>
+    <h1><span class="w1">Exclusive</span><span class="w2">Offers</span></h1>
+    <p class="sub">Grab your deal before the timer hits zero — valid till 11:59 PM today</p>
+  </div>
+
+  <!-- Countdown to 15 Mar 2026 11:59 AM -->
+  <div class="countdown">
+    <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-lbl">Hours</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-lbl">Mins</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-lbl">Secs</div></div>
+  </div>
+
+  <div class="expired-banner" id="exp-banner">These offers have expired.</div>
+
+  <div class="offers" id="grid"></div>
+
+  <div class="foot">
+    <span>Valid till 15 Mar 2026 · 11:59 PM</span>
+    <span class="fdot"></span>
+    <span>Secure &amp; Free</span>
+  </div>
+</div>
+
+<script>
+/* ---- Disable right-click & inspect shortcuts ---- */
+document.addEventListener('contextmenu',e=>e.preventDefault());
+document.addEventListener('keydown',e=>{
+  const k=e.key.toUpperCase();
+  if(
+    e.key==='F12'||
+    (e.ctrlKey&&e.shiftKey&&['I','J','C'].includes(k))||
+    (e.ctrlKey&&k==='U')||
+    (e.metaKey&&e.altKey&&['I','J','C'].includes(k))
+  ){e.preventDefault();return false;}
+});
+
+/* ---- Countdown ---- */
+const deadline=new Date('2026-03-15T23:59:00');
+function tick(){
+  const now=new Date();
+  const diff=deadline-now;
+  const hEl=document.getElementById('cd-h');
+  const mEl=document.getElementById('cd-m');
+  const sEl=document.getElementById('cd-s');
+  const banner=document.getElementById('exp-banner');
+  if(diff<=0){
+    hEl.textContent=mEl.textContent=sEl.textContent='00';
+    banner.style.display='block';
+    document.querySelectorAll('.offer').forEach(o=>{
+      o.style.opacity='.4';o.style.pointerEvents='none';
+    });
+    return;
+  }
+  const h=Math.floor(diff/3600000);
+  const m=Math.floor((diff%3600000)/60000);
+  const s=Math.floor((diff%60000)/1000);
+  hEl.textContent=String(h).padStart(2,'0');
+  mEl.textContent=String(m).padStart(2,'0');
+  sEl.textContent=String(s).padStart(2,'0');
+}
+tick();
+setInterval(tick,1000);
+
+/* ---- Offers (base64 obfuscated) ---- */
+const D=[
+  ['T2ZmZXIgMQ==','RXhjbHVzaXZlIHRvcC11cCByZXdhcmQ=','aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjUvbnVsbA==','SE9U'],
+  ['T2ZmZXIgMg==','U3BlY2lhbCBib251cyBhd2FpdHMgeW91','aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjYvbnVsbA==','TkVX'],
+  ['T2ZmZXIgMw==','UHJlbWl1bSBkZWFsIGluc2lkZQ==','aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjcvbnVsbA==','VFJFQUQ='],
+  ['T2ZmZXIgNA==','VW5sb2NrIHlvdXIgYm9udXM=','aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjgvbnVsbA==','VEVBTQ=='],
+  ['T2ZmZXIgNQ==','TGltaXRlZCBzdG9jayAtIGdyYWIgaXQ=','aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNzAvbnVsbA==','VEVBTQ=='],
+];
+const b=s=>atob(s);
+const grid=document.getElementById('grid');
+
+D.forEach(([t,desc,u,tag],i)=>{
+  const a=document.createElement('a');
+  a.className='offer';
+  a.href='#';
+  a.setAttribute('data-u',u);
+  a.innerHTML=`
+    <div class="offer-bar"></div>
+    <div class="num-box"><span class="num">0${i+1}</span></div>
+    <div class="info">
+      <div class="ttl">${b(t)}</div>
+      <div class="dsc">${b(desc)}</div>
+    </div>
+    <div class="badge">${b(tag)}</div>
+    <div class="arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+  `;
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    window.open(b(this.getAttribute('data-u')),'_blank','noopener,noreferrer');
+  });
+  grid.appendChild(a);
+});
+</script>
+</body>
+</html>
