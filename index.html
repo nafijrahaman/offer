@@ -3,295 +3,225 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Exclusive Offers</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Clash+Display:wght@600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<title>Exclusive Offers — ItzBazar</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
 :root{
-  --bg:#050508;
-  --s1:#0c0c14;
-  --s2:#10101c;
-  --bdr:#1c1c2e;
-  --bdr2:#252538;
-  --a:#c8f135;
-  --a2:#9ef000;
-  --blue:#4f8eff;
-  --pink:#ff4fa3;
-  --text:#f0f0fa;
-  --sub:#6060a0;
-  --hint:#404068;
+  --bg:#04040a;--s1:#0b0b14;--s2:#0f0f1c;
+  --bdr:#18182c;--bdr2:#22223a;
+  --a:#c8f135;--a2:#9ef000;
+  --blue:#4f8eff;--pink:#ff4fa3;--amber:#ffb84f;--teal:#3fffd2;
+  --text:#f0f0fa;--sub:#55558a;--hint:#333358;
 }
-
-html{scroll-behavior:smooth}
-
+html,body{height:100%}
 body{
-  background:var(--bg);
-  color:var(--text);
+  background:var(--bg);color:var(--text);
   font-family:'DM Sans',sans-serif;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:60px 20px;
-  -webkit-user-select:none;
-  user-select:none;
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:flex-start;
+  padding:56px 20px 72px;
+  -webkit-user-select:none;user-select:none;
   overflow-x:hidden;
 }
 
-/* ── Background ── */
-.bg-wrap{position:fixed;inset:0;pointer-events:none;overflow:hidden}
-.bg-dot{
+/* BG */
+.bgl{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bgl-dots{
   position:absolute;inset:0;
-  background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);
-  background-size:28px 28px;
+  background-image:radial-gradient(circle,rgba(255,255,255,.055) 1px,transparent 1px);
+  background-size:26px 26px;
 }
-.bg-g1{
-  position:absolute;top:-300px;right:-200px;
-  width:700px;height:700px;border-radius:50%;
-  background:radial-gradient(circle,rgba(200,241,53,.07) 0%,transparent 60%);
-}
-.bg-g2{
-  position:absolute;bottom:-250px;left:-150px;
-  width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(circle,rgba(79,142,255,.06) 0%,transparent 60%);
-}
-.bg-g3{
-  position:absolute;top:40%;left:40%;
-  width:500px;height:500px;border-radius:50%;
-  transform:translate(-50%,-50%);
-  background:radial-gradient(circle,rgba(255,79,163,.04) 0%,transparent 60%);
-}
-.bg-line{
-  position:absolute;bottom:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(200,241,53,.15),transparent);
-}
+.bgl-g1{position:absolute;top:-280px;right:-180px;width:680px;height:680px;border-radius:50%;background:radial-gradient(circle,rgba(200,241,53,.07) 0%,transparent 62%)}
+.bgl-g2{position:absolute;bottom:-220px;left:-180px;width:580px;height:580px;border-radius:50%;background:radial-gradient(circle,rgba(79,142,255,.06) 0%,transparent 62%)}
+.bgl-g3{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(255,79,163,.03) 0%,transparent 55%)}
+.bgl-hline{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(200,241,53,.12),transparent)}
 
-/* ── Wrap ── */
-.wrap{position:relative;z-index:1;width:100%;max-width:600px}
+/* CONTENT */
+.wrap{position:relative;z-index:1;width:100%;max-width:620px}
 
-/* ── Top tag ── */
-.toptag{
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:32px;
+/* DIVIDER TAG */
+.divtag{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:36px;
 }
-.toptag-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--bdr2))}
-.toptag-text{
-  font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;
-  color:var(--sub);white-space:nowrap;
-}
+.divtag-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--bdr2),transparent)}
+.divtag-txt{font-size:9.5px;font-weight:500;letter-spacing:3.5px;text-transform:uppercase;color:var(--sub);white-space:nowrap}
 
-/* ── Heading ── */
-.heading{margin-bottom:40px}
-.heading h1{
+/* HERO */
+.hero{margin-bottom:44px}
+.hero h1{
   font-family:'Fraunces',serif;
-  font-size:clamp(56px,13vw,96px);
-  font-weight:300;
-  line-height:.88;
-  letter-spacing:-2px;
-  margin-bottom:18px;
+  font-size:clamp(52px,12vw,92px);
+  font-weight:300;line-height:.88;letter-spacing:-2px;
+  margin-bottom:16px;
 }
-.heading h1 em{
+.hero h1 em{
   font-style:italic;
-  background:linear-gradient(120deg,var(--a) 0%,var(--a2) 40%,var(--blue) 100%);
+  background:linear-gradient(120deg,var(--a) 0%,var(--a2) 35%,var(--blue) 85%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
-.heading p{
-  font-size:14px;color:var(--sub);font-weight:300;
-  line-height:1.7;max-width:400px;
-}
+.hero p{font-size:13.5px;color:var(--sub);font-weight:300;line-height:1.7;max-width:380px}
 
-/* ── Countdown ── */
-.cd-wrap{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:8px;margin-bottom:32px;
-}
-.cd-cell{
-  background:var(--s1);
-  border:1px solid var(--bdr);
-  border-radius:16px;
-  padding:16px 12px 12px;
-  text-align:center;
+/* COUNTDOWN */
+.cd{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:28px}
+.cd-box{
+  background:var(--s1);border:1px solid var(--bdr);border-radius:16px;
+  padding:16px 10px 12px;text-align:center;
   position:relative;overflow:hidden;
 }
-.cd-cell::before{
+.cd-box::before{
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--a),var(--blue));
-  opacity:.5;
+  background:linear-gradient(90deg,var(--a),var(--blue));opacity:.45;
 }
 .cd-n{
-  font-family:'DM Sans',sans-serif;
-  font-size:36px;font-weight:600;
-  line-height:1;
-  background:linear-gradient(160deg,#fff 40%,var(--a));
+  font-size:34px;font-weight:600;line-height:1;display:block;
+  background:linear-gradient(160deg,#fff 30%,var(--a));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  display:block;
 }
 .cd-l{font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--hint);margin-top:6px;display:block}
 
-/* expiry note */
-.expiry-row{
+/* EXPIRE */
+.expire-row{
   display:flex;align-items:center;justify-content:center;gap:8px;
-  margin-bottom:24px;
-  font-size:11.5px;color:var(--sub);
+  margin-bottom:26px;font-size:11.5px;color:var(--sub);
 }
-.expiry-icon{
-  width:14px;height:14px;border-radius:50%;
-  border:1px solid var(--hint);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.expiry-icon::after{
-  content:'!';font-size:8px;color:var(--hint);font-weight:700;
-}
+.expire-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);animation:blink 1.8s ease-in-out infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 
-/* ── Expired banner ── */
+/* EXPIRED */
 .exp-bar{
   display:none;
-  background:rgba(255,79,79,.08);
-  border:1px solid rgba(255,79,79,.25);
-  border-radius:12px;padding:13px 18px;
-  text-align:center;font-size:13px;
-  color:#ff6060;margin-bottom:18px;
+  background:rgba(255,70,70,.07);border:1px solid rgba(255,70,70,.22);
+  border-radius:12px;padding:14px 18px;text-align:center;
+  font-size:13px;color:#ff7070;margin-bottom:20px;
 }
 
-/* ── Offers ── */
-.offers{display:flex;flex-direction:column;gap:8px}
+/* OFFERS GRID */
+.offers{display:flex;flex-direction:column;gap:7px}
 
 .offer{
   display:grid;
-  grid-template-columns:52px 1fr auto auto;
-  align-items:center;gap:0;
-  background:var(--s1);
-  border:1px solid var(--bdr);
-  border-radius:18px;
-  padding:16px 18px 16px 16px;
+  grid-template-columns:48px 1fr auto auto;
+  align-items:center;
+  background:var(--s1);border:1px solid var(--bdr);
+  border-radius:16px;padding:15px 16px 15px 14px;
   text-decoration:none;color:var(--text);
   cursor:pointer;
   position:relative;overflow:hidden;
-  transition:border-color .2s,background .2s,transform .12s;
+  transition:background .18s,border-color .18s,transform .12s;
   animation:rise .5s cubic-bezier(.22,1,.36,1) both;
   -webkit-tap-highlight-color:transparent;outline:none;
 }
+/* stagger all 10 */
 .offer:nth-child(1){animation-delay:.04s}
-.offer:nth-child(2){animation-delay:.09s}
-.offer:nth-child(3){animation-delay:.14s}
-.offer:nth-child(4){animation-delay:.19s}
-.offer:nth-child(5){animation-delay:.24s}
-@keyframes rise{
-  from{opacity:0;transform:translateY(24px) scale(.98)}
-  to{opacity:1;transform:translateY(0) scale(1)}
-}
+.offer:nth-child(2){animation-delay:.08s}
+.offer:nth-child(3){animation-delay:.12s}
+.offer:nth-child(4){animation-delay:.16s}
+.offer:nth-child(5){animation-delay:.20s}
+.offer:nth-child(6){animation-delay:.24s}
+.offer:nth-child(7){animation-delay:.28s}
+.offer:nth-child(8){animation-delay:.32s}
+.offer:nth-child(9){animation-delay:.36s}
+.offer:nth-child(10){animation-delay:.40s}
+@keyframes rise{from{opacity:0;transform:translateY(22px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 
-/* Hover glow sweep */
-.offer::after{
-  content:'';
-  position:absolute;inset:0;
-  background:linear-gradient(105deg,rgba(200,241,53,.04) 0%,transparent 50%);
-  opacity:0;transition:opacity .25s;border-radius:18px;pointer-events:none;
+.offer::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(108deg,rgba(200,241,53,.035) 0%,transparent 55%);
+  opacity:0;transition:opacity .22s;border-radius:16px;pointer-events:none;
 }
-.offer:hover{
-  background:var(--s2);
-  border-color:var(--bdr2);
-  transform:translateY(-1px);
+.offer:hover{background:var(--s2);border-color:var(--bdr2);transform:translateY(-1px)}
+.offer:hover::before{opacity:1}
+.offer:active{transform:scale(.984)}
+
+/* shimmer top */
+.offer::after{
+  content:'';position:absolute;top:0;left:15%;right:15%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(200,241,53,.28),transparent);
+  opacity:0;transition:opacity .22s;
 }
 .offer:hover::after{opacity:1}
-.offer:active{transform:scale(.985) translateY(0)}
 
-/* Number */
-.o-num{
-  width:40px;height:40px;
-  border-radius:12px;
-  background:linear-gradient(135deg,rgba(200,241,53,.1),rgba(79,142,255,.08));
-  border:1px solid rgba(200,241,53,.12);
+/* number */
+.o-n{
+  width:38px;height:38px;border-radius:10px;
   display:flex;align-items:center;justify-content:center;
-  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;
-  color:var(--a);flex-shrink:0;
+  font-size:13px;font-weight:600;flex-shrink:0;
 }
 
-/* Info */
-.o-info{padding:0 14px}
-.o-title{font-size:14.5px;font-weight:500;line-height:1.3;letter-spacing:.1px}
-.o-sub{font-size:11.5px;color:var(--sub);margin-top:3px;font-weight:300}
+/* info */
+.o-i{padding:0 13px}
+.o-t{font-size:14px;font-weight:500;line-height:1.3}
+.o-d{font-size:11px;color:var(--sub);margin-top:2px;font-weight:300}
 
-/* Tag */
+/* tag */
 .o-tag{
-  font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;
-  padding:4px 9px;border-radius:6px;
-  margin-right:10px;flex-shrink:0;white-space:nowrap;
+  font-size:8.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;
+  padding:3px 8px;border-radius:5px;
+  margin-right:9px;flex-shrink:0;white-space:nowrap;
 }
-.tag-hot{color:#ff9040;background:rgba(255,144,64,.09);border:1px solid rgba(255,144,64,.2)}
-.tag-new{color:var(--blue);background:rgba(79,142,255,.09);border:1px solid rgba(79,142,255,.2)}
-.tag-top{color:var(--pink);background:rgba(255,79,163,.09);border:1px solid rgba(255,79,163,.2)}
-.tag-vip{color:var(--a);background:rgba(200,241,53,.09);border:1px solid rgba(200,241,53,.2)}
 
-/* Arrow */
+/* arrow */
 .o-arr{
-  width:32px;height:32px;border-radius:50%;
+  width:30px;height:30px;border-radius:50%;
   border:1px solid var(--bdr2);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-  transition:background .2s,border-color .2s,transform .2s;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:background .18s,border-color .18s,transform .2s;
 }
-.offer:hover .o-arr{
-  background:rgba(200,241,53,.1);
-  border-color:rgba(200,241,53,.3);
-  transform:rotate(-45deg);
-}
-.o-arr svg{width:12px;height:12px;stroke:var(--hint);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+.offer:hover .o-arr{background:rgba(200,241,53,.09);border-color:rgba(200,241,53,.28);transform:rotate(-45deg)}
+.o-arr svg{width:11px;height:11px;stroke:var(--hint);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke .18s}
 .offer:hover .o-arr svg{stroke:var(--a)}
 
-/* ── Footer ── */
+/* FOOTER */
 .footer{
-  margin-top:36px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px 20px;
+  margin-top:28px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
   background:var(--s1);border:1px solid var(--bdr);border-radius:14px;
+  padding:14px 18px;
 }
-.footer-l{font-size:11px;color:var(--hint);line-height:1.6}
-.footer-l strong{color:var(--sub);font-weight:500}
-.footer-badges{display:flex;gap:6px}
+.f-left{font-size:11px;color:var(--hint);line-height:1.7}
+.f-left strong{color:var(--sub);font-weight:500}
+.f-right{display:flex;gap:6px;flex-wrap:wrap}
 .fbadge{
-  font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
-  padding:4px 9px;border-radius:6px;
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--bdr2);color:var(--hint);
+  font-size:8.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  padding:3px 9px;border-radius:5px;
+  background:rgba(255,255,255,.03);border:1px solid var(--bdr2);color:var(--hint);
 }
 </style>
 </head>
 <body>
 
-<div class="bg-wrap">
-  <div class="bg-dot"></div>
-  <div class="bg-g1"></div>
-  <div class="bg-g2"></div>
-  <div class="bg-g3"></div>
-  <div class="bg-line"></div>
+<div class="bgl">
+  <div class="bgl-dots"></div>
+  <div class="bgl-g1"></div>
+  <div class="bgl-g2"></div>
+  <div class="bgl-g3"></div>
+  <div class="bgl-hline"></div>
 </div>
 
 <div class="wrap">
 
-  <div class="toptag">
-    <div class="toptag-line"></div>
-    <div class="toptag-text">Limited Time Deals</div>
-    <div class="toptag-line"></div>
+  <div class="divtag">
+    <div class="divtag-line"></div>
+    <div class="divtag-txt">ItzBazar · Exclusive Deals</div>
+    <div class="divtag-line"></div>
   </div>
 
-  <div class="heading">
-    <h1>Grab Your<br><em>Exclusive</em><br>Offer</h1>
-    <p>Five premium top-up deals available today only. Timer below shows exactly how long you have.</p>
+  <div class="hero">
+    <h1>Top&#8209;Up<br><em>Offers</em><br>Today</h1>
+    <p>10 hand-picked top-up deals live right now. Pick yours before the clock runs out.</p>
   </div>
 
-  <div class="cd-wrap">
-    <div class="cd-cell"><span class="cd-n" id="cdh">00</span><span class="cd-l">Hours</span></div>
-    <div class="cd-cell"><span class="cd-n" id="cdm">00</span><span class="cd-l">Minutes</span></div>
-    <div class="cd-cell"><span class="cd-n" id="cds">00</span><span class="cd-l">Seconds</span></div>
+  <div class="cd">
+    <div class="cd-box"><span class="cd-n" id="cdh">00</span><span class="cd-l">Hours</span></div>
+    <div class="cd-box"><span class="cd-n" id="cdm">00</span><span class="cd-l">Minutes</span></div>
+    <div class="cd-box"><span class="cd-n" id="cds">00</span><span class="cd-l">Seconds</span></div>
   </div>
 
-  <div class="expiry-row">
-    <div class="expiry-icon"></div>
-    <span>Offers expire on <strong style="color:var(--sub);font-weight:500">15 March 2026 at 11:59 PM</strong></span>
+  <div class="expire-row">
+    <span class="expire-dot"></span>
+    <span>Offers expire on <strong style="color:var(--sub);font-weight:500">20 March 2026 · 11:59 PM</strong></span>
   </div>
 
   <div class="exp-bar" id="expbar">⏰ These offers have expired. Check back for new deals.</div>
@@ -299,21 +229,21 @@ body{
   <div class="offers" id="grid"></div>
 
   <div class="footer">
-    <div class="footer-l">
-      Valid until <strong>15 Mar 2026 · 11:59 PM</strong><br>
-      Tap any offer to claim instantly
+    <div class="f-left">
+      Valid until <strong>20 Mar 2026 · 11:59 PM</strong><br>
+      Tap any offer to open instantly
     </div>
-    <div class="footer-badges">
+    <div class="f-right">
+      <div class="fbadge">10 Offers</div>
       <div class="fbadge">Free</div>
       <div class="fbadge">Secure</div>
-      <div class="fbadge">5 Offers</div>
     </div>
   </div>
 
 </div>
 
 <script>
-/* ── Block inspect ── */
+/* Block right-click & inspect shortcuts */
 document.addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('keydown',e=>{
   const k=e.key.toUpperCase();
@@ -322,16 +252,14 @@ document.addEventListener('keydown',e=>{
   }
 });
 
-
-const DL=new Date('2026-03-15T23:59:00');
+/* Countdown to 15 Mar 2026 23:59:00 */
+const DL=new Date('2026-03-20T23:59:00');
 function tick(){
   const diff=DL-Date.now();
   if(diff<=0){
-    document.getElementById('cdh').textContent='00';
-    document.getElementById('cdm').textContent='00';
-    document.getElementById('cds').textContent='00';
+    ['cdh','cdm','cds'].forEach(id=>document.getElementById(id).textContent='00');
     document.getElementById('expbar').style.display='block';
-    document.querySelectorAll('.offer').forEach(o=>{o.style.opacity='.35';o.style.pointerEvents='none'});
+    document.querySelectorAll('.offer').forEach(o=>{o.style.opacity='.3';o.style.pointerEvents='none'});
     return;
   }
   const h=Math.floor(diff/3600000);
@@ -343,30 +271,64 @@ function tick(){
 }
 tick();setInterval(tick,1000);
 
-
-const D=[
-  ['T2ZmZXIgMQ==','RXhjbHVzaXZlIFRvcC1VcCBEZWFs',    'aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjUvbnVsbA==','dGFnLWhvdA=='],
-  ['T2ZmZXIgMg==','U3BlY2lhbCBCb251cyBSZXdhcmQ=',    'aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjYvbnVsbA==','dGFnLW5ldw=='],
-  ['T2ZmZXIgMw==','UHJlbWl1bSBEZWFsIEluc2lkZQ==',    'aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjcvbnVsbA==','dGFnLXRvcA=='],
-  ['T2ZmZXIgNA==','VW5sb2NrIFlvdXIgQm9udXM=',         'aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjgvbnVsbA==','dGFnLXZpcA=='],
-  ['T2ZmZXIgNQ==','TGltaXRlZCBTdG9jayBPZmZlcg==',    'aHR0cHM6Ly9vZmZlcnRvcHVwLmNvbS90b3B1cC8xNjkvbnVsbA==','dGFnLWhvdA=='],
+/* Offer data — ItzBazar topup IDs 122–132 (10 offers), base64 obfuscated URLs */
+/* URL pattern: https://itzbazar.com/topup/{id}/115%20Diamond%2075%20TK */
+const raw=[
+  ['T2ZmZXIgMDE=','aHR0cHM6Ly9pdHpiYXphci5jb20vdG9wdXAvMTIyLzExNSUyMERpYW1vbmQlMjA3NSUyMFRL','dGVhbA=='],
+  ['T2ZmZXIgMDI=','aHR0cHM6Ly9pdHpiYXphci5jb20vdG9wdXAvMTIzLzExNSUyMERpYW1vbmQlMjA3NSUyMFRL','bGltZQ=='],
+  ['T2ZmZXIgMDM=','aHR0cHM6Ly9pdHpiYXphci5jb20vdG9wdXAvMTI0LzExNSUyMERpYW1vbmQlMjA3NSUyMFRL','Ymx1ZQ=='],
+  ['T2ZmZXIgMDQ=','aHR0cHM6Ly9pdHpiYXphci5jb20vdG9wdXAvMTI1LzExNSUyMERpYW1vbmQlMjA3NSUyMFRL','cGluaw=='],
+  ['T2ZmZXIgMDU=','aHR0cHM6Ly9pdHpiYXphci5jb20vdG9wdXAvMTI2LzExNSUyMERpYW1vbmQlMjA3NSUyMFRL','YW1iZXI='],
+  ['T2ZmZXIgMDY=','aHR0cHM6Ly9pdHpiYXphci5jb20vdG9wdXAvMTI3LzExNSUyMERpYW1vbmQlMjA3NSUyMFRL','dGVhbA=='],
+  ['T2ZmZXIgMDc=','aHR0cHM6Ly9pdHpiYXphci5jb20vdG9wdXAvMTI4LzExNSUyMERpYW1vbmQlMjA3NSUyMFRL','bGltZQ=='],
+  ['T2ZmZXIgMDg=','aHR0cHM6Ly9pdHpiYXphci5jb20vdG9wdXAvMTI5LzExNSUyMERpYW1vbmQlMjA3NSUyMFRL','Ymx1ZQ=='],
+  ['T2ZmZXIgMDk=','aHR0cHM6Ly9pdHpiYXphci5jb20vdG9wdXAvMTMwLzExNSUyMERpYW1vbmQlMjA3NSUyMFRL','cGluaw=='],
+  ['T2ZmZXIgMTA=','aHR0cHM6Ly9pdHpiYXphci5jb20vdG9wdXAvMTMxLzExNSUyMERpYW1vbmQlMjA3NSUyMFRL','YW1iZXI='],
 ];
+
+const descs=[
+  '115 Diamond · 75 TK — Instant delivery',
+  '115 Diamond · 75 TK — Claim your bonus',
+  '115 Diamond · 75 TK — Limited slots left',
+  '115 Diamond · 75 TK — Top up now',
+  '115 Diamond · 75 TK — Exclusive deal',
+  '115 Diamond · 75 TK — Fast recharge',
+  '115 Diamond · 75 TK — Grab while live',
+  '115 Diamond · 75 TK — Premium offer',
+  '115 Diamond · 75 TK — Today only',
+  '115 Diamond · 75 TK — Last few remaining',
+];
+
+/* Colour themes per offer */
+const themes=[
+  {bg:'rgba(63,255,210,.08)',bdr:'rgba(63,255,210,.18)',txt:'#3fffd2',label:'TEAL'},
+  {bg:'rgba(200,241,53,.08)',bdr:'rgba(200,241,53,.18)',txt:'#c8f135',label:'LIVE'},
+  {bg:'rgba(79,142,255,.08)',bdr:'rgba(79,142,255,.18)',txt:'#4f8eff',label:'HOT'},
+  {bg:'rgba(255,79,163,.08)',bdr:'rgba(255,79,163,.18)',txt:'#ff4fa3',label:'NEW'},
+  {bg:'rgba(255,184,79,.08)',bdr:'rgba(255,184,79,.18)',txt:'#ffb84f',label:'VIP'},
+  {bg:'rgba(63,255,210,.08)',bdr:'rgba(63,255,210,.18)',txt:'#3fffd2',label:'DEAL'},
+  {bg:'rgba(200,241,53,.08)',bdr:'rgba(200,241,53,.18)',txt:'#c8f135',label:'LIVE'},
+  {bg:'rgba(79,142,255,.08)',bdr:'rgba(79,142,255,.18)',txt:'#4f8eff',label:'TOP'},
+  {bg:'rgba(255,79,163,.08)',bdr:'rgba(255,79,163,.18)',txt:'#ff4fa3',label:'HOT'},
+  {bg:'rgba(255,184,79,.08)',bdr:'rgba(255,184,79,.18)',txt:'#ffb84f',label:'VIP'},
+];
+
 const b=s=>atob(s);
-const descs=['Redeem your exclusive top-up reward','Special bonus awaiting you today','Premium deal — limited availability','Unlock your personal bonus now','Grab it before stock runs out'];
 const grid=document.getElementById('grid');
 
-D.forEach(([t,_d,u,tg],i)=>{
+raw.forEach(([t,u,_c],i)=>{
+  const th=themes[i];
   const a=document.createElement('a');
   a.className='offer';
   a.href='#';
   a.setAttribute('data-u',u);
   a.innerHTML=`
-    <div class="o-num">0${i+1}</div>
-    <div class="o-info">
-      <div class="o-title">${b(t)}</div>
-      <div class="o-sub">${descs[i]}</div>
+    <div class="o-n" style="background:${th.bg};border:1px solid ${th.bdr};color:${th.txt}">${String(i+1).padStart(2,'0')}</div>
+    <div class="o-i">
+      <div class="o-t">${b(t)}</div>
+      <div class="o-d">${descs[i]}</div>
     </div>
-    <div class="o-tag ${b(tg)}">${b(tg).includes('hot')?'HOT':b(tg).includes('new')?'NEW':b(tg).includes('top')?'TOP':'VIP'}</div>
+    <div class="o-tag" style="color:${th.txt};background:${th.bg};border:1px solid ${th.bdr}">${th.label}</div>
     <div class="o-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
   `;
   a.addEventListener('click',function(e){
